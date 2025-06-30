@@ -1,0 +1,46 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+## General
+- This is a 2D game built in Unity.
+- Keep scripts modular and single-responsibility.
+
+## Folders & Architecture
+- Scripts go in `Assets/Scripts/`.
+- Use the following folder structure inside Scripts:
+  - `Managers/`: for GameManager, AudioManager, etc.
+  - `Characters/`: for player and enemy behavior scripts.
+  - `UI/`: for menu and HUD scripts.
+  - `Systems/`: for reusable systems like inventory, input, or dialogue.
+  - `Utilities/`: for helper classes, enums, and extensions.
+
+## Gameplay Code
+- Use Unity's built-in physics (2D).
+- Use `SerializeField` for private fields exposed to the inspector.
+- Avoid putting game logic in `Update()` unless necessary — prefer coroutines or events.
+- Input is handled via Unity's new Input System.
+
+## Events & Communication
+- Use UnityEvents or C# Events for inter-object communication (e.g., player death, level completion).
+- Avoid hard references between GameObjects — prefer using interfaces or event-based communication.
+- Use `FindObjectOfType` or `GetComponent` only during initialization.
+
+## UI & States
+- Use a `UIManager` to control different screens and transitions.
+- Handle game states (pause, win, lose) through a `GameManager` singleton.
+
+## AI / Enemies
+- Enemy behavior should be state-driven (e.g., patrol, chase, attack).
+- Each enemy should have a separate script handling behavior using a finite state machine.
+
+## Code Style
+- Use XML doc comments (`///`) for public methods and classes.
+- Prefer composition over inheritance unless a shared base class makes logical sense.
+- Keep MonoBehaviour lifecycle methods (e.g., Awake, Start, Update) clean and minimal.
+
+## Testing
+- Write testable, decoupled logic where possible.
+- Scene-specific logic should be kept out of reusable systems.
+
